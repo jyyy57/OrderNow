@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Menu } from 'antd';
+import { Link } from 'dva/router';
 import style from './index.scss';
 
 export default function index() {
@@ -28,12 +29,24 @@ export default function index() {
           </svg>
         </a>
         <Menu className={style['menu-left']} mode="horizontal" defaultSelectedKeys={["home"]} >
-          <Menu.Item key={'home'}>Home</Menu.Item>
-          <Menu.Item key={"menu"}>Menu</Menu.Item>
-          <Menu.Item key={"admin"}>Admin</Menu.Item>
-          <Menu.Item key={"about"}>About</Menu.Item>
-          <Menu.Item key={"login"}>Login</Menu.Item>
-          <Menu.Item key={"register"}>Register</Menu.Item>
+          <Menu.Item key={'home'}>
+            <Link to='/home'>Home</Link>
+          </Menu.Item>
+          <Menu.Item key={"menu"}>
+            <Link to='/menu'>Menu</Link>
+          </Menu.Item>
+          <Menu.Item key={"admin"}>
+            <Link to='/admin'>Admin</Link>
+          </Menu.Item>
+          <Menu.Item key={"about"}>
+            <Link to='/about'>About</Link>
+          </Menu.Item>
+          <Menu.Item key={"login"}>
+            <Link to='/login'>Login</Link>
+          </Menu.Item>
+          <Menu.Item key={"register"}>
+            <Link to='/register'>Register</Link>
+          </Menu.Item>
         </Menu>
       </nav>
     );
