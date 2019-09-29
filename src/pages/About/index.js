@@ -7,15 +7,26 @@ import { Switch } from 'dva/router';
 
 const {TabPane} = Tabs;
 export default class index extends Component{
+  //点击tab切换路由
+  handleChangeTab = key => {
+    //console.log(key);
+    //window.location.href = "/#" + key;
+    if(this.props.location.pathname != key)
+    this.props.history.push(key);
+  }
   render() {
     const { routes, app } = this.props;
     return (
       <div className={style.about}>
-        <Tabs className={style.tabs} tabPosition={'left'}>
-          <TabPane tab="Order History" key="Order History" />
-          <TabPane tab="Contact Us" key="Contact Us" />
-          <TabPane tab="Order Documentation" key="Order Documentation" />
-          <TabPane tab="Delivery Information" key="Delivery Information" />
+        <Tabs className={style.tabs}
+              tabPosition={'left'}
+              onChange={this.handleChangeTab}
+              activeKey={this.props.location.pathname}
+        >
+          <TabPane tab="Order History" key="/about/history" />
+          <TabPane tab="Contact Us" key="/about/contact"  />
+          <TabPane tab="Order Documentation" key="/about/ordering"  />
+          <TabPane tab="Delivery Information" key="/about/delivery"  />
         </Tabs>
         <div className={style.routes}>
           {/*二级 route*/}
