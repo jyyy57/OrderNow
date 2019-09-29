@@ -3,7 +3,13 @@ export default {
 
   namespace: 'global',
 
-  state: {},
+  state: {
+    userInfo: {
+      name: null,
+      pwd: null,
+      id: {user_id:'abc'}
+    }
+  },
 
   subscriptions: {
     setup({ dispatch, history }) {  // eslint-disable-line

@@ -9,6 +9,12 @@ import { Router, Switch } from 'dva/router';
 // import Register from './pages/User/Register';
 import SubRoutes from './utils/SubRoutes';
 
+
+//define the switch of private router,默认是开的，不让进去
+const isAuthority = true;
+
+
+
 const RouteConfig =[
   {
     path: "/",
@@ -18,23 +24,49 @@ const RouteConfig =[
       {
         path: "/home",
         component:() => import("./pages/Home"),
-        model:[],
-        redirect: true
+        model:[import('./models/home')],
+        redirect: true,
+        isAuthority
       },
       {
         path: "/menu",
         component: () => import("./pages/Menus"),
         model:[],
+        isAuthority
       },
       {
         path: "/admin",
         component: () => import("./pages/Admin"),
         model:[],
+        isAuthority
       },
       {
         path: "/about",
         component: () => import("./pages/About"),
         model:[],
+        isAuthority,
+        routes: [
+          {
+            path: '/about/history',
+            model: [],
+            component: () => import('./pages/About/History')
+          },
+          {
+            path: '/about/contact',
+            model: [],
+            component: () => import('./pages/About/Contact')
+          },
+          {
+            path: '/about/delivery',
+            model: [],
+            component: () => import('./pages/About/Delivery')
+          },
+          {
+            path: '/about/ordering',
+            model: [],
+            component: () => import('./pages/About/Ordering')
+          }
+        ]
       },
       {
         path: "/login",
