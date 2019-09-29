@@ -1,6 +1,7 @@
 import React from 'react'
 import {Redirect, Route} from 'dva/router';
 import NoMatch from '../components/NoMatch';
+import dynamic from 'dva/dynamic';
 // export default function SubRoutes(route) {
 //   console.log(route);
 //   return (
@@ -8,10 +9,18 @@ import NoMatch from '../components/NoMatch';
 //              />
 //   );
 // }
-export default function SubRoutes({routes,component:Component}) {
-  return (
-    <Route render = {props => <Component {...props} routes={routes} />} />
-  )
+//解决动态加载路由组件的方法
+const dynamicCom = (app,models,component,routes) =>
+  dynamic({
+  app,
+  models: () => models,
+  component: () => component().then(res => {
+    const Component = res.default || res;
+    return props => <Component {... props} app={app} routes={routes} />;
+  })
+});
+export default function SubRoutes({routes,component,app, model}) {
+  return <Route component={dynamicCom(app,model,component,routes)} />;
 }
 //重定向 封装
 export function RedirectRoute({routes, from, exact}) {

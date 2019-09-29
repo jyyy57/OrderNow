@@ -20,7 +20,7 @@ const { Header, Content} = Layout;
 
 function IndexPage(props) {
   //console.log(props);
-  const { routes } = props;
+  const { routes,app } = props;
   console.log(routes);
   return (
     <Layout className={styles.layout}>
@@ -41,7 +41,7 @@ function IndexPage(props) {
 
           {routes.map((route,i) => (
             // call encapsulation component
-            <SubRoutes key= {i} {...route}  />
+            <SubRoutes key= {i} {...route} app={app} />
           ))}
           {/*redirect*/}
           /* 重定向三个属性：1.exact 严格模式，必须完全相同才会跳转；2. from从哪里开始匹配 2.跳转到哪里
