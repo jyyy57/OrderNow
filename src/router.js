@@ -54,7 +54,19 @@ const RouteConfig =[
           {
             path: '/about/contact',
             model: [],
-            component: () => import('./pages/About/Contact')
+            component: () => import('./pages/About/Contact'),
+            routes: [
+              {
+                path: '/about/contact/phone',
+                model: [],
+                component: () => import('./pages/About/Phone')
+              },
+              {
+                path: '/about/contact/address',
+                model: [],
+                component: () => import('./pages/About/Address')
+              },
+            ]
           },
           {
             path: '/about/delivery',
