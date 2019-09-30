@@ -3,6 +3,43 @@ import { Menu } from 'antd';
 import { Link } from 'dva/router';
 import style from './index.scss';
 
+const menus = [
+  {
+    key: 'home',
+    path: '/home',
+    name: 'Home'
+  },
+  {
+    key: 'menus',
+    path: '/menus',
+    name: 'Menus'
+  },
+  {
+    key: 'admin',
+    path: '/admin',
+    name: 'Admin'
+  },
+  {
+    key: 'about',
+    path: '/about',
+    name: 'About'
+  },
+  {
+    key: 'login',
+    path: '/login',
+    name: 'Login',
+    className: style.login
+  },
+  {
+    key: 'register',
+    path: '/register',
+    name: 'Register',
+    className: style.register
+  },
+
+
+
+]
 export default class index extends Component {
   constructor(props) {
     super(props);
@@ -65,24 +102,33 @@ export default class index extends Component {
               defaultSelectedKeys={["home"]}
               selectedKeys={[this.state.selectedKeys]}
         >
-          <Menu.Item key={'home'}>
-            <Link to='/home'>Home</Link>
-          </Menu.Item>
-          <Menu.Item key={"menu"}>
-            <Link to='/menu'>Menu</Link>
-          </Menu.Item>
-          <Menu.Item key={"admin"}>
-            <Link to='/admin'>Admin</Link>
-          </Menu.Item>
-          <Menu.Item key={"about"}>
-            <Link to='/about'>About</Link>
-          </Menu.Item>
-          <Menu.Item key={"login"}>
-            <Link to='/login'>Login</Link>
-          </Menu.Item>
-          <Menu.Item key={"register"}>
-            <Link to='/register'>Register</Link>
-          </Menu.Item>
+            {menus.map(({key,path,name,className}) => (
+            <Menu.Item key={key} className={className}>
+            <Link to={path}>{name}</Link>
+            </Menu.Item>
+            ))}
+
+
+
+
+
+
+
+          {/*<Menu.Item key={"menu"}>*/}
+          {/*  <Link to='/menu'>Menu</Link>*/}
+          {/*</Menu.Item>*/}
+          {/*<Menu.Item key={"admin"}>*/}
+          {/*  <Link to='/admin'>Admin</Link>*/}
+          {/*</Menu.Item>*/}
+          {/*<Menu.Item key={"about"}>*/}
+          {/*  <Link to='/about'>About</Link>*/}
+          {/*</Menu.Item>*/}
+          {/*<Menu.Item key={"login"}>*/}
+          {/*  <Link to='/login'>Login</Link>*/}
+          {/*</Menu.Item>*/}
+          {/*<Menu.Item key={"register"}>*/}
+          {/*  <Link to='/register'>Register</Link>*/}
+          {/*</Menu.Item>*/}
         </Menu>
       </nav>
     );
