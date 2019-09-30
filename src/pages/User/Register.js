@@ -3,6 +3,7 @@ import Logo from 'Assets/icon.png'
 import style from './account.scss';
 import {Form, Input, Button} from 'antd';
 import {email_reg,pwd_reg} from '../../utils/Regexp.js'
+import Request from '../../utils/Request'
 export class index extends Component{
   state = {
     email:'12'
@@ -23,7 +24,27 @@ export class index extends Component{
     }
     callback();
   };
-
+  //submit
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        const { email, pwd } = values;
+        // 发起网络请求
+        Request('/users.json', {
+          method: 'post',
+          data: { email, pwd }
+        }).then(res => {
+          // console.log(res);
+          if (res.status === 200 && res.data) {
+            // console.log(this.props.history);
+            this.props.history.push('/login');
+          }
+        });
+      }
+    });
+  };
+  
   render() {
     const {getFieldDecorator} = this.props.form;
     return <div className={style.account}>
@@ -106,7 +127,7 @@ export class index extends Component{
           )}
         </Form.Item>
         <Form.Item>
-          <Button className='btn' type='primary'>Register</Button>
+          <Button onClick={this.handleSubmit} className='btn' type='primary'>Register</Button>
         </Form.Item>
       </Form>
     </div>;
