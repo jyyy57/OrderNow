@@ -5,26 +5,25 @@ export default {
 
   state: {
     userInfo: {
-      name: null,
+      email: null,
       pwd: null,
-      id: {user_id:'abc'}
+      key: null
     }
   },
 
-  subscriptions: {
-    setup({ dispatch, history }) {  // eslint-disable-line
-    },
-  },
+  subscriptions: {},
 
   effects: {
-    *fetch({ payload }, { call, put }) {  // eslint-disable-line
-      yield put({ type: 'save' });
-    },
+    //dispatch user information
+    *setUserInfo({payload}, {put}) {
+      yield put({type: 'set_UserInfo', payload});
+    }
   },
 
   reducers: {
-    save(state, action) {
-      return { ...state, ...action.payload };
+    //set user information
+    set_UserInfo (state, {payload}) {
+      return { ...state, userInfo: payload };
     },
   },
 

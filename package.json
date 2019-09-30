@@ -15,10 +15,11 @@
     "jest": "^22.0.1",
     "node-sass": "^4.12.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "typescript": "^3.6.3"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^8.1.1",
     "babel-plugin-dva-hmr": "^0.3.2",
     "babel-plugin-import": "^1.12.2",
     "eslint": "^4.14.0",

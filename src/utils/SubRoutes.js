@@ -18,7 +18,7 @@ const dynamicCom = (app,models,component,routes,isAuthority,userInfo) =>
   component: () => component().then(res => {
     if(isAuthority) {
       //判断userInfo.id是否有内容
-      if(!userInfo.id) { //没有内容就跳转到login
+      if(!localStorage.key || !localStorage.email) { //没有内容就跳转到login
         return () => <Redirect to="/login" />;
       }
     }
